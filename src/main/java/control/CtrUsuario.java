@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dao.DaoUsuario;
+
 /**
  * Servlet implementation class CtrUsuario
  */
@@ -89,6 +91,27 @@ public class CtrUsuario extends HttpServlet {
 		if(direccion == null || direccion.isBlank() || direccion.isEmpty()) {
 			errores.put("direccion", "debe ingresar su direccion");
 		}
+		
+		DaoUsuario daoUsuario = new DaoUsuario();
+		
+		if(errores.size() ==  0) {
+			
+			try {
+				
+				daoUsuario.insertarUsuario(cedula, nombre, apellidos, correo, 3, password, telefono, ciudad, codigoPostal, direccion);
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace(System.out);
+				
+			}
+			
+			
+			
+			
+		}
+		
+		
 		
 		request.setAttribute("errores", errores);
 		
